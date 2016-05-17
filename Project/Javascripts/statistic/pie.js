@@ -18,7 +18,7 @@ function initPlot2(data) {
         .outerRadius(radius);
 
     var pie = d3.layout.pie()
-        .value(function(d) { return d.count; })
+        .value(function(d) { return parseInt(d[1]); })
         .sort(null);
 
     // create the pie parts
@@ -27,7 +27,7 @@ function initPlot2(data) {
         .enter()
         .append('path')
         .attr('d', arc)
-        .attr('fill', function(d, i) {
+        .attr('fill', function(d) {
             return color(d[0]);
         });
 
