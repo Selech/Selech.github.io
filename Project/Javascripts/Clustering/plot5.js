@@ -4,15 +4,15 @@ loadPlot5();
 // loads required files
 function loadPlot5() {
     var files = ['Data/Clustering/2DAll.json',
-        'Data/Clustering/2DAction.json',
-        'Data/Clustering/2DAdventure.json',
-        'Data/Clustering/2DComedy.json',
-        'Data/Clustering/2DCrime.json',
-        'Data/Clustering/2DDrama.json',
-        'Data/Clustering/2DMystery.json',
-        'Data/Clustering/2DSci-Fi.json',
-        'Data/Clustering/2DThriller.json',
-        'Data/Clustering/2DOther.json'
+        'Data/clustering/2DAction.json',
+        'Data/clustering/2DAdventure.json',
+        'Data/clustering/2DComedy.json',
+        'Data/clustering/2DCrime.json',
+        'Data/clustering/2DDrama.json',
+        'Data/clustering/2DMystery.json',
+        'Data/clustering/2DSci-Fi.json',
+        'Data/clustering/2DThriller.json',
+        'Data/clustering/2DOther.json'
     ]
     loadJSONFiles(files, function(data) {
         d3.json("Data/map.json", function(mapData) {
