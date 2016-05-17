@@ -1,6 +1,6 @@
 var plot1Data;
 
-d3.csv("Data/Statistic/data1.csv", function(data) {
+d3.csv("Data/statistic/data1.csv", function(data) {
     plot1Data = data;
     initPlot1();
 });
