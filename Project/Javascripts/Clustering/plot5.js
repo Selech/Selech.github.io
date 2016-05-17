@@ -3,7 +3,7 @@ loadPlot5();
 
 // loads required files
 function loadPlot5() {
-    var files = ['Data/Clustering/2DAll.json',
+    var files = ['Data/clustering/2DAll.json',
         'Data/clustering/2DAction.json',
         'Data/clustering/2DAdventure.json',
         'Data/clustering/2DComedy.json',
