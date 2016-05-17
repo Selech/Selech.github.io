@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Assignment 2</title>
+    <title>Project B</title>
     <!-- Latest compiled and minified CSS (Bootstrap) -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <!-- Optional theme (Bootstrap) -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+          integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
     <!-- Custom CSS (Template) -->
     <link href="./Stylesheets/template.css" rel="stylesheet">
     <link href="./Stylesheets/d3Styles.css" rel="stylesheet">
@@ -16,124 +18,335 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Project name</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#block1">The data</a></li>
+                <li><a href="#block2">Overview</a></li>
+                <li><a href="#block3">Decision forest</a></li>
+                <li><a href="#block4">KNN</a></li>
+                <li><a href="#block5">K-Means</a></li>
+                <li><a href="#block6">Conclusion</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
 
+<div id="block0" class="container-fluid">
+    <div class="container">
+        <h1 id="title">Filming Locations in San Francisco</h1>
+    </div>
+</div>
+
+
 <div id="block1" class="container-fluid">
-    <h1>Movies in San Francisco</h1>
-    <h3>Interesting!</h3>
-    <svg id="svg-plot1" width="100%" height="400"></svg>
+    <div class="container" id="intro">
+        <h1>Filming locations in San Francisco</h1>
+        <h3>Goal</h3>
+        Determine where certain movie genres are filmed in San Francisco, and where the best rated movies are shot.
+        <br/>
+        <h3>Our initial dataset</h3>
+        This dataset consists of a bunch of filming locations in San Francisco: <br/>
+        <ul>
+            <li>1265 data objects (each contains an unique film location) (244 kB total) <br/></li>
+            <li>12 attributes
+                <ul>
+                    <li>
+                        Title, Release Year, Location, Fun Facts, Production Company, Distributor, Director, Writer,
+                        Actor 1, Actor 2, Actor 3, "Smile Again, Jenny Lee"<br>
+                    </li>
+                </ul>
+            </li>
+            <li>The 1265 film locations are distributed over 220 different movies<br></li>
+            <li>Movies date back to 1915 and up to early 2016<br/></li>
+        </ul>
+
+        <h3>Find the explainer notebook</h3>
+        You can find our corresponding explainer notebook to learn more about how we worked with our data. Trust us, its
+        worth a look, we've spend a lot of time processing the data: <a href="url">Explainer Notebook</a>
+        <br/><br/>
+    </div>
 </div>
 
 <div id="block2" class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <h1>This is block 2</h1>
-            <h3>Interesting!</h3>
-        </div>
+    <div class="container">
+        <h1>Basic overview of the data</h1>
+        As explained in the notebook, the most interesting thing for us was to find the locations, genres and
+        rating from other sources. But our initial plots showed something interesting:
+        <br>
+        <br>
+        <svg id="svg-plot1" width="100%" height="400"></svg>
+        <br>
+        <br>
+        One can see a major drop in the number of movies in the period 2005 - 2011, which might be caused by the financial crisis (2008-2011).
+        <br>
+        The filming location then increase again after it was over, and even seemed to increase accordingly to
+        the growth before the crisis.
+        Note, that our data for 2016 only contained a small amount of locations, since the year had just begun
+        when we started.
+        <br>
+        <br>
     </div>
-    <div class="row">
-        <div class="col-md-5">
-            <svg id="svg-plot3" width="100%"></svg>
-        </div>
-        <div class="col-md-7">
-            <div class="form-group">
-                <label>Genre:</label>
-                <select class="form-control" onchange="setGenre1()" id="genre-select1">
-                    <option value="All">All</option>
-                    <option value="Action">Action</option>
-                    <option value="Adventure">Adventure</option>
-                    <option value="Comedy">Comedy</option>
-                    <option value="Crime">Crime</option>
-                    <option value="Drama">Drama</option>
-                    <option value="Romance">Romance</option>
-                    <option value="Sci-Fi">Sci-Fi</option>
-                    <option value="Thriller">Thriller</option>
-                    <option value="Other">Other</option>
-                </select>
-
-                <label>Decade:</label>
-                <select class="form-control" onchange="setDecade()" id="decade-select">
-                    <option value="1910">1910 - 1920</option>
-                    <option value="1920">1920 - 1930</option>
-                    <option value="1930">1930 - 1940</option>
-                    <option value="1940">1940 - 1950</option>
-                    <option value="1950">1950 - 1960</option>
-                    <option value="1960">1960 - 1970</option>
-                    <option value="1970">1970 - 1980</option>
-                    <option value="1980">1980 - 1990</option>
-                    <option value="1990">1990 - 2000</option>
-                    <option value="2000">2000 - 2010</option>
-                    <option value="2010">2010 - 2016</option>
-                </select>
-            </div>
-        </div>
-    </div>
+</div>
 </div>
 
 <div id="block3" class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <h1>This is block 3</h1>
-            <h3>Interesting!</h3>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Using Decision Forest</h1>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-7">
-            <svg id="svg-plot5" width="100%"></svg>
-        </div>
-        <div class="col-md-5">
-            <div class="form-group">
-                <label>Genre:</label>
-                <select class="form-control" onchange="setGenre()" id="genre-select">
-                    <option value="0">All</option>
-                    <option value="1">Action</option>
-                    <option value="2">Adventure</option>
-                    <option value="3">Comedy</option>
-                    <option value="4">Crime</option>
-                    <option value="5">Drama</option>
-                    <option value="6">Romance</option>
-                    <option value="7">Sci-Fi</option>
-                    <option value="8">Thriller</option>
-                    <option value="9">Other</option>
-                </select>
+        <div class="row">
+            <div class="col-md-5">
+                <svg id="svg-plot3" width="100%"></svg>
+            </div>
+            <div class="col-md-7">
+                <div class="form-group">
+                    We've trained a Decision Forrest that should be able to predict the probability of
+                    a certain movie genre in a given point the grid shown on the map.
+                    The model has been trained using the locations of known genres, which are grouped into
+                    decades. The plotted points are not for the choosen decade
+                    but instead for the whole dataset.
+                    <br/><br/>
+                    The blue grid-point shows the estimated likelyhood of a location having a certain genre. The more blue the more likely. The black dots shows all the movie locations of the selected genre across all time.
+                    <br><br/>
+                    You are able to change the genre as well as the decade below, in order to see anything that
+                    you would find interesting!
+                    <br>
+                    <br>
+                    <label>Genre:</label>
+                    <select class="form-control" onchange="setGenre1()" id="genre-select1">
+                        <option value="Action">Action</option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="Comedy">Comedy</option>
+                        <option value="Crime">Crime</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Sci-Fi">Sci-Fi</option>
+                        <option value="Thriller">Thriller</option>
+                        <option value="Other">Other</option>
+                    </select>
 
-                <label>Number of clusters:</label>
-                <select class="form-control" onchange="setCluster()" id="cluster-select">
-                    <option value="k2">2</option>
-                    <option value="k3">3</option>
-                    <option value="k4">4</option>
-                    <option value="k5">5</option>
-                    <option value="k6">6</option>
-                    <option value="k7">7</option>
-                    <option value="k8">8</option>
-                    <option value="k9">9</option>
-                    <option value="k10">10</option>
-                </select>
+                    <label>Decade:</label>
+                    <select class="form-control" onchange="setDecade()" id="decade-select">
+                        <option value="1910">1910 - 1920</option>
+                        <option value="1920">1920 - 1930</option>
+                        <option value="1930">1930 - 1940</option>
+                        <option value="1940">1940 - 1950</option>
+                        <option value="1950">1950 - 1960</option>
+                        <option value="1960">1960 - 1970</option>
+                        <option value="1970">1970 - 1980</option>
+                        <option value="1980">1980 - 1990</option>
+                        <option value="1990">1990 - 2000</option>
+                        <option value="2000">2000 - 2010</option>
+                        <option value="2010">2010 - 2016</option>
+                    </select>
+                </div>
             </div>
         </div>
     </div>
-
-
-
-
-
 </div>
+
+<div id="block4" class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>KNearestNeighbors</h1>
+            </div>
+        </div>
+        <div class="row" style="padding-bottom: 30px">
+            <div class="col-md-5">
+                <h3>Determine the genre</h3>
+                We've trained a KNearestNeighbor that should be able to predict which specific genre is likely
+                to be found at a given point in the grid shown on the map.
+                The model has been trained using the locations of known genres. Then we've made a grid of
+                100x100 points, and predicted the genre for each of these points.
+                <br>
+                <br>
+                You can toggle which genres you want to see and which to filtre by using the checkboxes below:
+                <br>
+                <br>
+                <div class="col-md-6">
+                    <div class="checkbox">
+                        <label><input type="checkbox" onchange="updateplot4(this)" value="Action"
+                                      checked>Action</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" onchange="updateplot4(this)" value="Adventure"
+                                      checked>Adventure</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" onchange="updateplot4(this)" value="Comedy"
+                                      checked>Comedy</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" onchange="updateplot4(this)" value="Crime"
+                                      checked>Crime</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" onchange="updateplot4(this)" value="Drama"
+                                      checked>Drama</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="checkbox">
+                        <label><input type="checkbox" onchange="updateplot4(this)" value="Romance"
+                                      checked>Romance</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" onchange="updateplot4(this)" value="Sci-Fi"
+                                      checked>Sci-Fi</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" onchange="updateplot4(this)" value="Thriller" checked>Thriller</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" onchange="updateplot4(this)" value="Mystery"
+                                      checked>Mystery</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" onchange="updateplot4(this)" value="Other"
+                                      checked>Other</label>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-md-7">
+                <svg id="svg-plot4" width="100%"></svg>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <svg id="svg-plot6" width="100%"></svg>
+            </div>
+            <div class="col-md-5">
+                <h3>Determine the ratings</h3>
+                We've also trained a KNearestNeighbor that should be able to predict which rating a movie would
+                get in a specific point in the grid shown on the map.
+                The model has been trained using the locations of known ratings. And just like above we've made
+                a grid of 100x100 points, and predicted the rating for each of these points.
+                <br>
+                <br>
+                You can toggle which interval of ratings you want to see and which to filtre by using the
+                checkboxes below:
+                <br>
+                <br>
+                <div class="checkbox">
+                    <label><input type="checkbox" onchange="updateplot6(this)" value="4" checked>4 - 5</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" onchange="updateplot6(this)" value="5" checked>5 - 6</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" onchange="updateplot6(this)" value="6" checked>6 - 7</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" onchange="updateplot6(this)" value="7" checked>7 - 8</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" onchange="updateplot6(this)" value="8" checked>8 - 9</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="block5" class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Kmeans</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                Finally we've made Kmeans clustering of the locations.
+                The model is using all the locations.
+                <br>
+                <br>
+                You are able to change the genre as well as the number of clusters below, and maybe find some
+                cool clustering in our data:
+                <br>
+                <br>
+                <div class="form-group">
+                    <label>Genre:</label>
+                    <select class="form-control" onchange="setGenre()" id="genre-select">
+                        <option value="0">All</option>
+                        <option value="1">Action</option>
+                        <option value="2">Adventure</option>
+                        <option value="3">Comedy</option>
+                        <option value="4">Crime</option>
+                        <option value="5">Drama</option>
+                        <option value="6">Romance</option>
+                        <option value="7">Sci-Fi</option>
+                        <option value="8">Thriller</option>
+                        <option value="9">Other</option>
+                    </select>
+
+                    <label>Number of clusters:</label>
+                    <select class="form-control" onchange="setCluster()" id="cluster-select">
+                        <option value="k2">2</option>
+                        <option value="k3">3</option>
+                        <option value="k4">4</option>
+                        <option value="k5">5</option>
+                        <option value="k6">6</option>
+                        <option value="k7">7</option>
+                        <option value="k8">8</option>
+                        <option value="k9">9</option>
+                        <option value="k10">10</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <svg id="svg-plot5" width="100%"></svg>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="block6" class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <h1>Conclusion</h1>
+            Although the data is hard to model there still exists some tendencies which can be seen in the plots.
+            Using more information, for instance from other cities, may reveal even better results.
+
+            That said, we did manage to plot some data a train some (bad) models although we had a lot of obstacles to climb. Having more time and data might make this dataset more suitable for data mining.
+        </div>
+    </div>
+</div>
+
+<div id="block7" class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <h1>Data sets and more</h1>
+            <ul>
+                <li>Original dataset <a href="https://data.sfgov.org/Culture-and-Recreation/Film-Locations-in-San-Francisco/yitu-d5am">Link</a></li>
+                <li>Pre-processed data <a href="Data/transformed_data3.json">Link</a></li>
+                <li>Explainer notebook <a href="http://nbviewer.jupyter.org/github/selech/selech.github.io/blob/master/Explainer_Notebook.ipynb">Link</a></li>
+                <li>Hand in #1 <a href="http://nbviewer.jupyter.org/github/selech/selech.github.io/blob/master/Python/Assignment1.ipynb">Link</a></li>
+                <li>Hand in #2 <a href="http://selech.github.io">Link</a></li>
+                <li>Project A, Video <a href="https://www.youtube.com/watch?v=MtIwAawLfNg&feature=youtu.be">Link</a></li>
+                <li>Project A, Video (funny) <a href="https://www.youtube.com/watch?annotation_id=annotation_3667282819&feature=iv&src_vid=MtIwAawLfNg&v=VfsHnec8a4M">Link</a></li>
+
+            </ul>
+
+
+
+        </div>
+    </div>
+</div>
+
 
 <!-- Footer -->
 <footer>
@@ -147,11 +360,12 @@
 </footer>
 
 
-
 <!-- JQuery (used by Bootstrap) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript (Bootstrap) -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
 <!-- The D3 library -->
 <script type="text/javascript" src="Javascripts/d3.js"></script>
 <!-- Our D3 script -->
@@ -159,5 +373,8 @@
 <script type="text/javascript" src="Javascripts/Statistic/plot1.js"></script>
 <script type="text/javascript" src="Javascripts/Clustering/plot5.js"></script>
 <script type="text/javascript" src="Javascripts/classification/plot3.js"></script>
+<script type="text/javascript" src="Javascripts/statistic/pie.js"></script>
+<script type="text/javascript" src="Javascripts/KNN/plot4.js"></script>
+<script type="text/javascript" src="Javascripts/KNN/plot6.js"></script>
 </body>
 </html>

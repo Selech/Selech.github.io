@@ -3,21 +3,24 @@ loadPlot3();
 
 // loads required files
 function loadPlot3() {
-    d3.json("Data/classification/classification.json", function(data) {
-        d3.json("Data/map.json", function(mapData) {
-            initPlot3(mapData, data);
-        })
+    d3.json("Data/classification/DecadeGenreLocations.json", function(pointData) {
+        d3.json("Data/classification/classification.json", function(data) {
+            d3.json("Data/map.json", function(mapData) {
+                initPlot3(mapData, data, pointData);
+            })
+        });
     });
 }
 
 // called when all necessary files have been loaded
-function initPlot3(mapData, data) {
+function initPlot3(mapData, data, pointData) {
     var svg = d3.select("#svg-plot3");
 
     plot3 = {
         svg: svg,
         mapData: mapData,
-        data: data
+        data: data,
+        pointData: pointData
     };
 
     // create the map
@@ -25,6 +28,7 @@ function initPlot3(mapData, data) {
         .data(mapData.features)
         .enter()
         .append("path")
+        .attr('class', 'map')
         .attr("opacity", "0.6")
         .attr("fill", '#777777')
         .attr("stroke", "black")
@@ -42,7 +46,7 @@ function initPlot3(mapData, data) {
         });
 
     // tooltips for districts
-    $('svg path').tooltip({
+    $('svg .map').tooltip({
         'container': 'body',
         'placement': 'top',
         'title': function(){
@@ -53,11 +57,11 @@ function initPlot3(mapData, data) {
     });
 
     // creates the new points
-    plot3.svg.selectAll(".datapoint")
+    plot3.svg.selectAll(".grid-point")
         .data(plot3.data["1910"]["Action"])
         .enter()
         .append("circle")
-        .attr("class", "datapoint");
+        .attr("class", "grid-point");
 
     setDataPlot3("Action", 1910);
 }
@@ -86,23 +90,56 @@ function drawPlot3() {
         .attr("d", path)
         .attr("stroke-width", scale * 0.0002);
 
+    // removes points
+    plot3.svg.selectAll(".datapoint").remove();
+
+    var all_points = [];
+    for (var i = 1910; i < 2020; i+= 10) {
+        var arr = plot3.pointData[plot3.genre][i+""];
+        for (var j = 0; j < arr.length; j++)
+            all_points.push(arr[j]);
+    }
+
     // the data points
     plot3.svg.selectAll(".datapoint")
+        .data(all_points)
+        .enter()
+        .append("circle")
+        .attr("cx", function(d) {
+            try {
+                var arr = [d[1], d[0]];
+                return projection(arr)[0];
+            } catch(exception) {
+                alert("error");
+            }
+
+        })
+        .attr("cy", function(d) {
+            return projection([d[1], d[0]])[1];
+        })
+        .attr('class', 'datapoint')
+        .attr("fill", 'black')
+        .attr("r", w / 200);
+
+    // the data points
+    plot3.svg.selectAll(".grid-point")
         .data(plot3.data[plot3.decade][plot3.genre])
         .attr("opacity", "0.5")
         .transition()
         .duration(700)
+        .attr('stroke', 'red')
+        .attr('stroke-width', '0px')
         .attr("cx", function(d) {
-            return projection([d['lon'], d['lat']])[0] - 13;
+            return projection([d['lon'], d['lat']])[0];
         })
         .attr("cy", function(d) {
-            return projection([d['lon'], d['lat']])[1] - 13;
+            return projection([d['lon'], d['lat']])[1];
         })
         .attr("fill", function(d) {
             var v = parseFloat(d["predict"]) * 255;
             return 'rgb('+0+','+0+','+v+')';
         })
-        .attr("r", w / 80);;
+        .attr("r", w / 80);
 }
 
 function setDataPlot3(genre, decade) {

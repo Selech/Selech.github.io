@@ -1,6 +1,7 @@
 svg {
     background: white;
     border: #444444 3px solid;
+    font-size: 11pt;
     margin: auto;
 }
 
@@ -21,4 +22,8 @@ svg {
     font-family: sans-serif;
     font-size: 15px;
     fill: #305090;
+}
+
+nav {
+    font-size: 13pt;
 }

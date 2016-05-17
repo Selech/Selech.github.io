@@ -29,6 +29,32 @@ function loadJSONFiles(files, callback) {
 }
 
 // maps a k-point to a color (used in 2D)
+function mapGenreToColor(genre) {
+    switch(genre) {
+        case "Action":
+            return "red";
+        case "Adventure":
+            return "#003399";
+        case "Crime":
+            return "yellow";
+        case "Sci-Fi":
+            return "green";
+        case "Other":
+            return "#3399ff";
+        case "Drama":
+            return "purple";
+        case "Comedy":
+            return "black";
+        case "Thriller":
+            return "orange";
+        case "Romance":
+            return "magenta";
+        case "Mystery":
+            return "brown";
+    }
+}
+
+// maps a k-point to a color (used in 2D)
 function mapKtoColor(k) {
     switch(k) {
         case 0:

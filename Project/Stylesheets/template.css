@@ -13,11 +13,16 @@ body, html {
     font-family: 'Open Sans', sans-serif;
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
-    color: #777;
+    color: #444;
+    font-size: 16pt;
     background-color: #FFFFFF;
     /*background: url('../Images/background-small.png') repeat center center scroll;*/
 }
 h1 {
+    margin-top: 25px;
+    margin-bottom: 40px;
+    text-align: center;
+    font-weight: bold;
 }
 h1 strong {
     font-weight: 900;
@@ -30,7 +35,9 @@ h3 {
     font-size: 18px;
     font-weight: 500;
     color: #444;
-    text-transform: uppercase;
+    font-size: 20pt;
+    font-weight: bold;
+
 }
 h4 {
     font-size: 20px;
@@ -51,10 +58,20 @@ a {
     color: #777;
 }
 
+#title {
+    font-size: 40pt;
+    color: white;
+    text-align: center;
+    font-weight: 300;
+}
+
+a {
+    color: cornflowerblue;
+}
 
 footer {
     padding: 20px 10px;
-    background: rgba(52, 122, 183, 0.5);
+    background: #444444;
     border-top: rgba(255, 255, 255, 0.5) solid 1px;
 }
 
@@ -64,14 +81,39 @@ footer {
     margin: 2px 20px;
 }
 
-#block1 {
+
+
+#block0 {
     background: #F38181;
+    padding: 60px;
+}
+
+#block1 {
+    background: white;
+    padding: 30px;
 }
 
 #block2 {
-    background: white;
+    background: #EEEEEE;
+    padding: 30px;
 }
 
 #block3 {
-    background: #CCCCCC;
+    background: white;
+    padding: 30px;
+}
+
+#block4 {
+    background: #EEEEEE;
+    padding: 30px;
+}
+
+#block5 {
+    background: white;
+    padding: 30px;
+}
+
+#block6 {
+    background: #EEEEEE;
+    padding: 30px;
 }

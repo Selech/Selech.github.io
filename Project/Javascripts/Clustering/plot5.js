@@ -36,6 +36,7 @@ function initPlot5(mapData, data) {
         .data(mapData.features)
         .enter()
         .append("path")
+        .attr('class', 'map')
         .attr("opacity", "0.6")
         .attr("fill", '#777777')
         .attr("stroke", "black")
@@ -53,7 +54,7 @@ function initPlot5(mapData, data) {
         });
 
     // tooltips for districts
-    $('svg path').tooltip({
+    $('svg .map').tooltip({
         'container': 'body',
         'placement': 'top',
         'title': function(){

@@ -1,7 +1,10 @@
 svg {
-    background: white;
-    border: #444444 3px solid;
-    font-size: 11pt;
+    background: #858585;
+    background: #E9F1FF;
+    border-radius: 5px;
+    border: #24272D 1px solid;
+    border-bottom-color: #303539;
+    border-right-color: #303539;
     margin: auto;
 }
 
@@ -22,8 +25,4 @@ svg {
     font-family: sans-serif;
     font-size: 15px;
     fill: #305090;
-}
-
-nav {
-    font-size: 13pt;
 }
