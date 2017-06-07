@@ -1,238 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en-us">
+  <head>
     <meta charset="utf-8">
-    <title>Assignment 2</title>
-    <!-- Latest compiled and minified CSS (Bootstrap) -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <!-- Optional theme (Bootstrap) -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-    <!-- Custom CSS (Template) -->
-    <link href="./Stylesheets/template.css" rel="stylesheet">
-    <link href="./Stylesheets/d3Styles.css" rel="stylesheet">
-</head>
-<body>
-
-
-
-
-
-<!-- Full Width Image Header -->
-<header class="header-image">
-    <div class="headline">
-        <div class="container">
-            <h2>Assignment 2</h2>
-        </div>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | DaluxTango - Room Test</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="TemplateData/UnityProgress.js"></script>  
+    <script src="Build/UnityLoader.js"></script>
+    <script>
+      var gameInstance = UnityLoader.instantiate("gameContainer", "Build/Test.json", {onProgress: UnityProgress});
+    </script>
+  </head>
+  <body>
+    <div class="webgl-content">
+      <div id="gameContainer" style="width: 1440px; height: 800px"></div>
+      <div class="footer">
+        <div class="webgl-logo"></div>
+        <div class="fullscreen" onclick="gameInstance.SetFullscreen(1)"></div>
+        <div class="title">DaluxTango - Room Test</div>
+      </div>
     </div>
-</header>
-
-
-<!-- Part 2A -->
-<div id="2A" class="container-fluid main-container">
-    <div class="row-fluid">
-        <!-- Text component -->
-        <div class="col-md-8">
-            <h2 class="featurette-heading">
-                Part A <small>Simple SVG stuff</small>
-            </h2>
-            <p>To the right is a SVG element containing 5 boxes.
-                The boxes are 80 pixels in size and have a gray border of 2 pixels and are increasingly translucent from left to right. </p>
-        </div>
-        <!-- Svg component -->
-        <div class="col-md-4">
-            <svg width="350" height="250">
-                <rect x="10" y="150" width="80" height="80" opacity="1.0" fill="purple" stroke="darkGray" stroke-width="2"></rect>
-                <rect x="70" y="115" width="80" height="80" opacity="0.8" fill="blue" stroke="darkGray" stroke-width="2"></rect>
-                <rect x="130" y="80" width="80" height="80" opacity="0.6" fill="green" stroke="darkGray" stroke-width="2"></rect>
-                <rect x="190" y="45" width="80" height="80" opacity="0.4" fill="yellow" stroke="darkGray" stroke-width="2"></rect>
-                <rect x="250" y="10" width="80" height="80" opacity="0.2" fill="red" stroke="darkGray" stroke-width="2"></rect>
-            </svg>
-        </div>
-
-    </div>
-</div>
-
-<!-- Part 2B -->
-<div id="2B" class="container-fluid main-container">
-    <div class="row-fluid">
-        <!-- Svg component -->
-        <div class="col-sm-6">
-            <svg id="svg-2b" width="100%" height="500"></svg>
-            <div class="text-center">
-                <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-primary btn-lg active">
-                        <input type="radio" onchange="setDataB(0)" name="options" autocomplete="off" checked> 2003
-                    </label>
-                    <label class="btn btn-primary btn-lg">
-                        <input type="radio" onchange="setDataB(1)" name="options" autocomplete="off"> 2015
-                    </label>
-                </div>
-            </div>
-        </div>
-        <!-- Text component -->
-        <div class="col-sm-6">
-            <h2 class="featurette-heading">
-                Part B <small>One scatter plot and two datasets</small>
-            </h2>
-            <h3>The plot</h3>
-            <p>The scatter plot contains data about different crimes across different districts in San Fransisco for 2003 and 2015.
-                The x-axis corresponds to the cases of prostitution and the y-axis the cases of car thefts.
-                The radius of the circles are probational with the total number of crimes within the district.</p>
-            <p>The axes are the same for both plots in order to make it easier to compare them and spot trends, and
-                the plot is fully responsive and will adjust if the window is resized.</p>
-            <p>Hover the mouse above the circles to get the exact numbers.</p>
-
-            <h3>The data</h3>
-            <p>
-                The plots shows that especially Northern, Tenderloin and Mission have reduced the two kinds of crimes from 2003 to 2015. These were also the three districts with by far most prostitution cases.
-                Southern and Taravan are the only districts that have an increase in the number of prostitution.
-            </p>
-            <p>
-
-                The total number of crimes per district doesn't change much over the years.</p>
-        </div>
-    </div>
-</div>
-
-<!-- Part 2C -->
-<div id="2C" class="container-fluid main-container">
-    <div class="row-fluid">
-        <!-- Text component -->
-        <div class="col-md-12">
-            <h2 class="featurette-heading">
-                Part C <small>One barchart and (at least) two datasets</small>
-            </h2>
-            <h3>The plot</h3>
-            <p>The plot shows a time-line of the number of prostitution cases per month since 2003. Like the previous plot it is fully responsive and have tooltips.</p>
-
-            <h3>The data</h3>
-            <p>The data supplements the scatter plot in the previous section. The three main districts of prostitution are Mission, Tenderloin, and Northern.
-                It is only in the past years they managed to bring down prostituion.</p>
-            <p>In contrary, Southern and Taravan have increased in prostition the past few years.</p>
-            <p>Prostitution does not seem to be season based. </p>
-        </div>
-    </div>
-    <div class="row-fluid">
-        <!-- Svg component -->
-        <div class="col-md-12">
-            <svg id="svg-2c" width="100%" height="400"></svg>
-            <div class="text-center">
-                <div class="btn-group" data-toggle="buttons">
-                <label class="btn btn-primary active">
-                    <input type="radio" onchange="setDataC(0)" name="options" autocomplete="off" checked> Bayview
-                </label>
-                <label class="btn btn-primary">
-                    <input type="radio" onchange="setDataC(1)" name="options" autocomplete="off"> Central
-                </label>
-                <label class="btn btn-primary">
-                    <input type="radio" onchange="setDataC(2)" name="options" autocomplete="off"> Ingleside
-                </label>
-                <label class="btn btn-primary">
-                    <input type="radio" onchange="setDataC(3)" name="options" autocomplete="off"> Mission
-                </label>
-                <label class="btn btn-primary ">
-                    <input type="radio" onchange="setDataC(4)" name="options" autocomplete="off"> Northern
-                </label>
-                <label class="btn btn-primary ">
-                    <input type="radio" onchange="setDataC(5)" name="options" autocomplete="off"> Park
-                </label>
-                <label class="btn btn-primary ">
-                    <input type="radio" onchange="setDataC(6)" name="options" autocomplete="off"> Richmond
-                </label>
-                <label class="btn btn-primary ">
-                    <input type="radio" onchange="setDataC(7)" name="options" autocomplete="off"> Southern
-                </label>
-                <label class="btn btn-primary">
-                    <input type="radio" onchange="setDataC(8)" name="options" autocomplete="off"> Taraval
-                </label>
-                <label class="btn btn-primary">
-                    <input type="radio" onchange="setDataC(9)" name="options" autocomplete="off"> Tenderloin
-                </label>
-            </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Part 2D -->
-<div id="2D" class="container-fluid main-container">
-    <div class="row-fluid">
-        <!-- Svg component -->
-        <div class="col-md-5">
-            <svg id="svg-2d" width="100%"></svg>
-            <div class="text-center">
-                <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-primary btn-lg active" onmouseout="setData2D('')" onmouseover="previewData2D('k2')">
-                        <input type="radio" onchange="setData2D('k2')" name="options" autocomplete="off" checked> K 2
-                    </label>
-                    <label class="btn btn-primary btn-lg" onmouseout="setData2D('')" onmouseover="previewData2D('k3')">
-                        <input type="radio" onchange="setData2D('k3')" name="options" autocomplete="off"> K 3
-                    </label>
-                    <label class="btn btn-primary btn-lg" onmouseout="setData2D('')" onmouseover="previewData2D('k4')">
-                        <input type="radio" onchange="setData2D('k4')" name="options" autocomplete="off"> K 4
-                    </label>
-                    <label class="btn btn-primary btn-lg" onmouseout="setData2D('')" onmouseover="previewData2D('k5')">
-                        <input type="radio" onchange="setData2D('k5')"  name="options" autocomplete="off"> K 5
-                    </label>
-                    <label class="btn btn-primary btn-lg" onmouseout="setData2D('')" onmouseover="previewData2D('k6')">
-                        <input type="radio" onchange="setData2D('k6')" name="options" autocomplete="off"> K 6
-                    </label>
-                </div>
-            </div>
-        </div>
-        <!-- Text component -->
-        <div class="col-md-7">
-            <h2 class="featurette-heading">
-                Part D <small>Visualizing geodata</small>
-            </h2>
-            <h3>The plot</h3>
-            <p>The plot shows a k-means clustering of prostitution in San Francisco in the period 2003-2015. Each district is color coded similar to previous plots and the dots are cases of prostitution.
-                The squares are the centroids for dots of same color.</p>
-            <p>The plot are fully responsive and the buttons can be hovered to get a preview of the data of that view.</p>
-
-            <h3>The data</h3>
-            <p>To make the web page load faster we took some actions make the data files as small as possible, however, we trained the model on all the data before any modifications.
-            To reduce the data we removed all duplicate points.
-                We created the json file <i>crimes.json</i> containing first the positions of the centroids for all k-tests and then the data points with an associated index to the centroid of each k-test.
-            With these modifications we managed to get data file size of 116kb. The Python Notebook can be found here: <a href="http://nbviewer.jupyter.org/github/selech/selech.github.io/blob/master/Python/2D_Python.ipynb" target="_blank">Link</a></p>
-
-            <p>As before, one can see that prostitution is most common in Mission, Tenderloin and Nothern and in some parts of Southern and Central.
-                Tenderloin is almost fully covered by cases (just east of Northern).</p>
-
-        </div>
-    </div>
-</div>
-
-<!-- Footer -->
-<footer>
-    <div class="container-fluid">
-        <div class="col-lg-12">
-            <span class="footer-text">Authors</span>
-            <span class="footer-text">Bjørn Hasager Vinther s152423 </span>
-            <span class="footer-text">Peter Scheel Nielsen s152424</span>
-        </div>
-    </div>
-</footer>
-
-
-
-
-
-
-
-
-
-
-<!-- JQuery (used by Bootstrap) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- Latest compiled and minified JavaScript (Bootstrap) -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-<!-- The D3 library -->
-<script type="text/javascript" src="Javascripts/d3.js"></script>
-<!-- Our D3 script -->
-<script type="text/javascript" src="Javascripts/utils.js"></script>
-<script type="text/javascript" src="Javascripts/part2B.js"></script>
-<script type="text/javascript" src="Javascripts/part2C.js"></script>
-<script type="text/javascript" src="Javascripts/part2D.js"></script>
-</body>
+  </body>
 </html>
