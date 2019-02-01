@@ -1,0 +1,16 @@
+attribute vec4 vPosition;
+
+uniform mat4 P, MV;
+
+varying vec3 fPosition;
+varying vec3 fNormal;
+
+void main()
+{
+
+    // everything is view space
+    fPosition = (MV * vPosition).xyz;
+    fNormal = normalize(mat3(MV) * vPosition.xyz);
+
+    gl_Position = P * MV * vPosition;
+}

@@ -1,0 +1,44 @@
+precision mediump float;
+
+uniform samplerCube cubemap;
+uniform float useParallax; // whether or not to use parallax correction
+uniform float storeDepth; // whether or not to store the depth in the alpha component
+uniform mat4 inv; // used to go from view space to world space for the texture look-up
+uniform vec3 center; // center of the mirror ball in view space
+
+varying vec3 fPosition;
+varying vec3 fNormal;
+
+// parallax correct a reflected direction
+vec3 correct(vec3 r) {
+    // distance in given direction seen from the center of the sphere
+    float rl = textureCube(cubemap, mat3(inv) * r).a * 200.0;
+    // vector from center to surface point in view space
+    vec3 x = fPosition - center;
+    float dp = rl - dot(x, r);
+    vec3 p = x + r * dp;
+    return normalize(p);
+}
+
+void
+main()
+{
+    // stores the depth in the alpha value
+    float alpha = storeDepth > 0.5 ? length(fPosition) / 200.0 : 1.0;
+
+    // find reflected direction
+    vec3 incident = normalize(fPosition);
+    vec3 n = normalize(fNormal);
+    vec3 reflect = reflect(incident, n); // in view space
+
+    if (useParallax > 0.5) {
+        reflect = correct(reflect);
+    }
+
+    reflect = mat3(inv) * reflect; // now in world space
+
+    // find value in cubemap
+    vec3 color = textureCube(cubemap, reflect).rgb;
+    gl_FragColor = vec4(color, alpha);
+}
+
