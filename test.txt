@@ -1,0 +1,6 @@
+{
+{ 1, { Number = 1, Answer = "JIM HALPERT", ImageName = "Images/Jim"} },
+{ 2, { Number = 2, Answer = "HERMIONE GRANGER", ImageName = "Images/Hermione" } },
+{ 3, { Number = 3, Answer = "ROSS GELLER", ImageName = "Images/Ross" } },
+{ 4, { Number = 4, Answer = "ALICE", ImageName = "Images/Alice" } }
+}
